@@ -21,7 +21,7 @@ const Login = () => {
 
 
     if (!password) {
-      setError("Insira a senha")
+      setError("Insira a senha.")
       return
     }
 
@@ -62,7 +62,7 @@ const Login = () => {
           <p className=' text-[13px] text-slate-800 mt-3'>
             Não tem uma conta? {' '}
             <Link className=' font-medium text-primary underline' to='/signup'>
-              Entrar
+              Cadastrar
             </Link>
           </p>
         </form>

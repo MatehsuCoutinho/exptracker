@@ -11,7 +11,7 @@ exports.registerUser = async (req, res) => {
     const { fullName, email, password, profileImageUrl } = req.body || {}
 
     //conferindo campos vazios
-    if (!fullName || !email || !password ) {
+    if (!fullName || !email || !password) {
         return res.status(400).json({ message: "Todos os campos são necessários" })
     }
 
@@ -43,7 +43,24 @@ exports.registerUser = async (req, res) => {
 
 //logando usuario
 exports.loginUser = async (req, res) => {
+    const { email, password } = req.body || {}
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Todos os campos são necessários' })
+    }
+    try {
+        const user = await User.findOne({ email })
+        if (!user || !(await user.comparePassword(password))) {
+            return res.status(400).json({ message: 'Usuário ou Senha Inválidos' })
+        }
 
+        res.status(200).json({
+            id: user._id,
+            user,
+            token: generateToken(user._id),
+        })
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao entrar', error: err.message })
+    }
 }
 
 // mostrar user

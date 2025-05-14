@@ -40,6 +40,12 @@ exports.getAllIncome = async (req, res) => {
 
 exports.deleteIncome = async (req, res) => {
 
+    try {
+        await Income.findByIdAndDelete(req.params.id)
+        res.json({ message: 'Renda deletada com sucesso' })
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' })
+    }
 }
 
 exports.downloadIncomeExcel = async (req, res) => {

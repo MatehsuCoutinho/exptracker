@@ -1,5 +1,5 @@
-const user = require('../models/user.model')
-const income = require('../models/income.model')
+const User = require('../models/user.model')
+const Income = require('../models/income.model')
 
 exports.addIncome = async (req, res) => {
     const userId = req.user.id
@@ -27,7 +27,15 @@ exports.addIncome = async (req, res) => {
 }
 
 exports.getAllIncome = async (req, res) => {
+    const userId = req.user.id
 
+    try {
+        const income = await Income.find({ userId }).sort({ date: -1 })
+        res.json(income)
+    } catch (error) {
+        console.error('Erro em getAllIncome:', error);
+        res.status(500).json({ message: 'Server Error' })
+    }
 }
 
 exports.deleteIncome = async (req, res) => {

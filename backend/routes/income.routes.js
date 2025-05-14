@@ -7,7 +7,7 @@ const {
 } = require('../controllers/income.controller')
 const { protect } = require('../middleware/auth.middleware')
 
-const router = express.router()
+const router = express.Router()
 
 router.post('/add', protect, addIncome)
 router.get('/get', protect, getAllIncome)

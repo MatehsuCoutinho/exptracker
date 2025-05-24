@@ -4,6 +4,8 @@ import IncomeOverview from '../../components/Income/IncomeOverview'
 import axiosInstance from '../../utils/axios.instance'
 import { API_PATHS } from '../../utils/apiPaths'
 import Modal from '../../components/modal'
+import AddIncomeForm from '../../components/Income/AddIncomeForm'
+import toast from 'react-hot-toast'
 
 const Income = () => {
 
@@ -35,7 +37,38 @@ const Income = () => {
     }
   }
 
-  const handleAddIncome = async (income) => { }
+  const handleAddIncome = async (income) => {
+    const { source, amount, date, icon } = income
+
+    if (!source.trim()) {
+      toast.error('Fonte de renda é necessária')
+    }
+
+    if (!amount || isNaN(amount) || Number(amount) <= 0) {
+      toast.error('Quantidade deve ser um número válido')
+      return
+    }
+
+    if (!date) {
+      toast.error('Data é necessária')
+      return
+    }
+
+    try {
+      await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
+        source,
+        amount,
+        date,
+        icon,
+      })
+
+      setOpenAddIncomeModal(false)
+      toast.success('Renda adicionada com sucesso')
+      fetchIncomeDetails()
+    } catch (error) {
+      console.error('Erro adicionando renda', error.response?.data?.message || error.message)
+    }
+  }
 
   useEffect(() => {
     return () => { }
@@ -69,7 +102,7 @@ const Income = () => {
           onClose={() => setOpenAddIncomeModal(false)}
           title='Adicionar Renda'
         >
-          <div>Adicionar Renda</div>
+          <AddIncomeForm onAddIncome={handleAddIncome} />
         </Modal>
       </div>
     </DashboardLayout>

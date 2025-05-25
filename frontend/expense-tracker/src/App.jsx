@@ -13,6 +13,7 @@ import Income from './pages/dashboard/Income'
 import Expense from './pages/dashboard/expense'
 import UserProvider from './context/userContext'
 import { Toaster } from 'react-hot-toast'
+import RecentTransactionsPage from './pages/dashboard/RecentTransactionsPage'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path='/dashboard' exact element={<Home />} />
             <Route path='/income' exact element={<Income />} />
             <Route path='/expense' exact element={<Expense />} />
+            <Route path='/recent' exact element={<RecentTransactionsPage/>}/>
           </Routes>
         </Router>
       </div>

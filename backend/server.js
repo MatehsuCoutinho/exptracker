@@ -22,6 +22,15 @@ app.use(express.json())
 
 connectDB()
 
+const path = require('path')
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
+const fs = require('fs')
+const uploadsDir = path.join(__dirname, 'uploads')
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir)
+}
+
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/income', incomeRoutes)
 app.use('/api/v1/expense', expenseRoutes)

@@ -29,15 +29,15 @@ const AddIncomeForm = ({ onAddIncome }) => {
 
             <Input
                 value={income.amount}
-                onChange={({ target }) => handleChange('amount', target.amount)}
+                onChange={({ target }) => handleChange('amount', target.value)}
                 label='Quantia'
-                placeholder='$'
+                placeholder='$7.000'
                 type='number'
             />
 
             <Input
                 value={income.date}
-                onChange={({ target }) => handleChange('amount', target.value)}
+                onChange={({ target }) => handleChange('date', target.value)}
                 label='Data'
                 placeholder=''
                 type='date'

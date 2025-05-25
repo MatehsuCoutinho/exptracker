@@ -21,8 +21,6 @@ app.use(
 app.use(express.json())
 
 connectDB()
-
-const path = require('path')
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 const fs = require('fs')

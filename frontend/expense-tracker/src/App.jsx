@@ -6,14 +6,14 @@ import {
   Route,
   Navigate,
 } from "react-router-dom"
-import Login from './pages/auth/login'
-import SignUp from './pages/auth/signup'
-import Home from './pages/dashboard/Home'
-import Income from './pages/dashboard/Income'
-import Expense from './pages/dashboard/expense'
-import UserProvider from './context/userContext'
+import Login from './pages/auth/login.jsx'
+import SignUp from './pages/auth/signup.jsx'
+import Home from './pages/dashboard/Home.jsx'
+import Income from './pages/dashboard/Income.jsx'
+import Expense from './pages/dashboard/expense.jsx'
+import UserProvider from './context/userContext.jsx'
 import { Toaster } from 'react-hot-toast'
-import RecentTransactionsPage from './pages/dashboard/RecentTransactionsPage'
+import RecentTransactionsPage from './pages/dashboard/RecentTransactionsPage.jsx'
 
 const App = () => {
   return (

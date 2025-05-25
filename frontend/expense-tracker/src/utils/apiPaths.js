@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8000'
+export const BASE_URL = 'https://exptracker-backend-6jzq.onrender.com'
 
 export const API_PATHS = {
     AUTH: {
